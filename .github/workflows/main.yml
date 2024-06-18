@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]  # Runs on pushes to the "main" branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Specifies the runner environment
+
+    steps:
+      - uses: actions/checkout@v3  # Checks out code from the repository
+      - name: Use Python version 3.9  # Defines Python version
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Install dependencies  # Installs project dependencies
+        run: pip install -r requirements.txt  # Assuming you have a requirements.txt file
+
+      - name: Run tests  # Add unit tests here (future step)
+        # ... (You'll add unit test commands here later)
+
+      - name: Build the app  # Build the Flask app (optional)
+        run: python app.py build  # (if your app requires building)
+
+      - name: Deploy (configure deployment steps here)  # Deployment configuration (future step)
+        # ... (You'll configure deployment commands here later)
